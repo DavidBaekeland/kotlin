@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WC 4</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- <link href="" rel="stylesheet" /> -->
+</head>
+<body>
+<div id="container">
+    <div id="messageContainer">
+        <div class="messageItem" th:each="l : ${list}">
+            <a th:href="@{/deleteMessage(id=${l.getId()})}">delete</a>
+            <a th:href="@{/putMessage(id=${l.getId()})}">update</a>
+            <div class="header">
+                <span class="author" th:text="${l.author}">
+                </span>
+            </div>
+            <p th:text="${l.message}"> Message</p>
+            <form id="qsdf" th:object="${message}" th:action="@{/putMessage(id=${l.getId()})}" method="post">
+                <input type="text" value="0" th:field="${message.author}">
+                <input type="text" th:field="${message.message}" placeholder="Send a message" />
+                <input type="submit" value="submit" class="button" />
+            </form>
+        </div>
+    </div>
+    <div id="input">
+        <form id="chatForm" th:object="${message}" th:action="@{/addMessage}" method="post">
+            <input type="text" value="0" th:field="${message.author}">
+            <input type="text" th:field="${message.message}" placeholder="Send a message" />
+            <input type="submit" value="submit" class="button" />
+        </form>
+
+
+
+
+    </div>
+</div>
+</body>
+</html>
